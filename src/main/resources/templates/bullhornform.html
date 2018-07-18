@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
+</head>
+<body>
+<form action = "#"
+      th:action = "@{/process}"
+      th:object = "${bullhorn}"
+      method ="post">
+    <input type ="hidden" th:field="*{id}"/>
+
+    <p>Date:<input type="text" id ="datepicker" th:field="*{postedDate}"/><p/>
+    <span th:if="${#fields.hasErrors('postedDate')}"
+          th:errors="*{postedDate}"></span><br/>
+    Sentby:<input type="text" th:field="*{sentBy}"/>
+    <span th:if="${#fields.hasErrors('sentBy')}"
+          th:errors="*{sentBy}"></span><br/>
+    Content:<textarea rows="3" th:field = "*{content}"/>
+    <span th:if="${#fields.hasErrors('content')}"
+          th:errors="*{content}"></span><br/>
+    <br/>
+
+    <input type = "submit" value="Submit"/>
+
+
+
+
+</form>
+
+
+</body>
+</html>

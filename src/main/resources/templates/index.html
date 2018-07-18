@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:sec="htt://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+   <!-- <tr>
+        <th> ID</th>
+        <th>PostDate </th>
+        <th>SentBy</th>
+        <td> Actions</td>
+    </tr>-->
+    <tr th:each="bullhorn:${bullhorns}">
+        <td th:text="${bullhorn.id}"></td>
+        <td th:text="${bullhorn.postedDate}"></td>
+        <td th:text="${bullhorn.sentBy}"></td>
+        <td th:text="${bullhorn.content}"></td>
+        <td>
+            <div sec:authorize="hasAuthority('ADMIN')">
+            <a href ="/add"> add</a>
+            <a th:href="@{/update/{id}(id=${bullhorn.id})}">Update</a>
+            </div>
+
+            <a th:href="@{/detail/{id}(id=${bullhorn.id})}">Details</a>
+
+            <a href ="/logout"> logout</a>
+
+
+        </td>
+
+
+
+
+    </tr>
+
+</table>
+</body>
+</html>
