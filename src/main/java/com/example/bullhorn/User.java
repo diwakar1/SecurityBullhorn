@@ -31,9 +31,24 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    public User(){
+
+    }
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enabled = enabled;
+        this.username = username;
+    }
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
     private Collection<Role> roles;
+
 
     public long getId() {
         return id;
@@ -55,10 +70,10 @@ public class User {
 
         // I cheated... convert the password to a bcrypt password coming out.
         // Stored in Db in clear text. Don't try this in production.
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+       /* PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
         System.out.println(hashedPassword);
-        this.password = hashedPassword;
+        this.password = hashedPassword;*/
         return password;
     }
 

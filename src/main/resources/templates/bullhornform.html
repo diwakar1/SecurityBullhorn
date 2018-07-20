@@ -7,11 +7,7 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $( function() {
-            $( "#datepicker" ).datepicker();
-        } );
-    </script>
+
 </head>
 <body>
 <form action = "#"
@@ -19,6 +15,7 @@
       th:object = "${bullhorn}"
       method ="post">
     <input type ="hidden" th:field="*{id}"/>
+    <h1> Bullhorn form</h1>
 
     <p>Date:<input type="text" id ="datepicker" th:field="*{postedDate}"/><p/>
     <span th:if="${#fields.hasErrors('postedDate')}"
